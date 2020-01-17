@@ -29,8 +29,8 @@ class MapSampleState extends State<MapSample> {
   Completer<GoogleMapController> _controller = Completer();
 
   static final CameraPosition _kGooglePlex = CameraPosition(
-    target: LatLng(37.42796133580664, -122.085749655962),
-    zoom: 14.4746,
+    target: _center,
+    zoom: _zoom,
   );
 
   static final CameraPosition _kLake = CameraPosition(
