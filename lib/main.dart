@@ -33,11 +33,59 @@ class MapSampleState extends State<MapSample> {
     zoom: _zoom,
   );
 
-  static final CameraPosition _kLake = CameraPosition(
-      bearing: 192.8334901395799,
-      target: LatLng(37.43296265331129, -122.08832357078792),
-      tilt: 59.440717697143555,
-      zoom: 19.151926040649414);
+  static final CameraPosition _pos_1 = CameraPosition(
+   //   bearing: 192.8334901395799,
+      target: LatLng(36.770610, 3.058451),
+    //  tilt: 59.440717697143555,
+      zoom: _zoom);
+
+
+  Future<void> _goToInitialPos() async {
+    final GoogleMapController controller = await _controller.future;
+    controller.animateCamera(CameraUpdate.newCameraPosition(_kGooglePlex));
+  }
+
+  Future<void> _goToPos_1() async {
+    final GoogleMapController controller = await _controller.future;
+    controller.animateCamera(CameraUpdate.newCameraPosition(_pos_1));
+  }
+
+  _onCameraMove(CameraPosition position) {
+    _lastMapPosition = position.target;
+  }
+
+  _onMapTypeButtonPressed() {
+    setState(() {
+      print(_mapType == MapType.normal);
+      this._mapType =
+          _mapType == MapType.normal ? MapType.satellite : MapType.normal;
+    });
+  }
+
+  _onAddMarkerButtonPressed() {
+    setState(() {
+      _markers.add(Marker(
+          markerId: MarkerId(_lastMapPosition.toString()),
+          position: _lastMapPosition,
+          infoWindow: InfoWindow(
+            title: "This is a title",
+            snippet: "This is a snippet",
+          ),
+          icon: BitmapDescriptor.defaultMarker));
+    });
+  }
+
+  Widget createCustomFloatButton(Function func, IconData icon) {
+    return FloatingActionButton(
+      onPressed: func,
+      materialTapTargetSize: MaterialTapTargetSize.padded,
+      backgroundColor: Colors.blue,
+      child: Icon(
+        icon,
+        size: 36,
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
