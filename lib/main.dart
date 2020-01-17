@@ -21,6 +21,11 @@ class MapSample extends StatefulWidget {
 }
 
 class MapSampleState extends State<MapSample> {
+  static const _zoom = 11.0;
+  static const _center = LatLng(36.750610, 3.048451);
+  MapType _mapType = MapType.normal;
+  LatLng _lastMapPosition = _center;
+  final Set<Marker> _markers = {};
   Completer<GoogleMapController> _controller = Completer();
 
   static final CameraPosition _kGooglePlex = CameraPosition(
