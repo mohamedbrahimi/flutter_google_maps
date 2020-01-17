@@ -90,19 +90,58 @@ class MapSampleState extends State<MapSample> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-      body: GoogleMap(
-        mapType: MapType.hybrid,
-        initialCameraPosition: _kGooglePlex,
-        onMapCreated: (GoogleMapController controller) {
-          _controller.complete(controller);
-        },
-      ),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: _goToTheLake,
-        label: Text('To the lake!'),
-        icon: Icon(Icons.directions_boat),
-      ),
-    );
+        appBar: AppBar(
+          title: Text("Google Mpas"),
+          backgroundColor: Colors.blue,
+        ),
+        body: Stack(
+          children: <Widget>[
+            GoogleMap(
+              mapType: _mapType,
+              initialCameraPosition: _kGooglePlex,
+              onMapCreated: (GoogleMapController controller) {
+                _controller.complete(controller);
+              },
+              onCameraMove: _onCameraMove,
+              markers: _markers,
+            ),
+            Padding(
+              padding: EdgeInsets.all(16.0),
+              child: Align(
+                alignment: Alignment.topLeft,
+                child: Column(
+                  children: <Widget>[
+                    createCustomFloatButton(_goToInitialPos, Icons.my_location),
+                  ],
+                ),
+              ),),
+            Padding(
+              padding: EdgeInsets.all(16.0),
+              child: Align(
+                alignment: Alignment.topRight,
+                child: Column(
+                  children: <Widget>[
+                    createCustomFloatButton(_onMapTypeButtonPressed, Icons.map),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    createCustomFloatButton(
+                        _onAddMarkerButtonPressed, Icons.add_location),
+                    SizedBox(height: 10,),
+                    createCustomFloatButton(_goToPos_1, Icons.location_searching)
+                  ],
+                ),
+               ),
+            )
+          ],
+        )
+
+        // floatingActionButton: FloatingActionButton.extended(
+        //   onPressed: _goToTheLake,
+        //   label: Text('To the lake!'),
+        //   icon: Icon(Icons.directions_boat),
+        // ),
+        );
   }
 
   
