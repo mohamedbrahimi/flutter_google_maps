@@ -14,7 +14,7 @@ xmlns:tools="http://schemas.android.com/tools"
         android:label="google_maps_with_flutter"
         android:icon="@mipmap/ic_launcher">
 
-        <meta-data android:name="com.google.android.geo.AIzaSyAAiKtKKQ24TyaPKx2ovjgtigAKxX7JU2M"
+        <meta-data android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyAAiKtKKQ24TyaPKx2ovjgtigAKxX7JU2M"/>
 
         <activity
