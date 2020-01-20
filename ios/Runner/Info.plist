@@ -44,5 +44,11 @@
 
 	<key>io.flutter.embedded_views_preview</key>
     <string>YES</string>
+
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+    <string>Your prompt</string>
+
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>Your prompt</string>
 </dict>
 </plist>
